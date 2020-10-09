@@ -38,9 +38,8 @@ append_warn_flags(helloworld)
 
 add_subdirectory(test)
 
-install(TARGETS helloworld libhelloshared
-RUNTIME DESTINATION bin
-LIBRARY DESTINATION lib)
+install(TARGETS helloworld
+RUNTIME DESTINATION bin)
 
 set(CPACK_GENERATOR DEB)
 set(CPACK_PACKAGE_VERSION_MAJOR "${PROJECT_VERSION_MAJOR}")
