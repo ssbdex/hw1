@@ -1,8 +1,10 @@
-{
+import os
+
+text = '''{
     "package": {
         "name": "homeworks",
         "repo": "otus-cpp",
-        "subject": "Ampermetr123",
+        "subject": "ampermetr123",
         "desc": "I was pushed completely automatically",
         "website_url": "www.jfrog.com",
         "issue_tracker_url": "https://github.com/Ampermetr123/otus-cpp/issues",
@@ -17,11 +19,16 @@
 
     "files":
         [{"includePattern": "build/(.*\.deb)", "uploadPattern": "pool/main/h/homeworks/$1",
-        "matrixParams": {
+            "matrixParams": {
             "deb_distribution": "bionic",
             "deb_component": "main",
             "deb_architecture": "amd64"}
         }
     ]
 
-}
+}'''
+
+with open("./deploy.txt","w") as f:
+    f.write( text.replace('$TRAVIS_BUILD_NUMBER', os.getenv('TRAVIS_BUILD_NUMBER',0) ))
+
+
