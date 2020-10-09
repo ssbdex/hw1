@@ -1,0 +1,27 @@
+{
+    "package": {
+        "name": "homeworks",
+        "repo": "otus-cpp",
+        "subject": "Ampermetr123",
+        "desc": "I was pushed completely automatically",
+        "website_url": "www.jfrog.com",
+        "issue_tracker_url": "https://github.com/Ampermetr123/otus-cpp/issues",
+        "vcs_url": "https://github.com/Ampermetr123/otus-cpp.git",
+        "licenses": ["GPL-2.0"]
+    },
+
+    "version": {
+        "name": "0.0.$TRAVIS_BUILD_NUMBER",
+        "desc": "This is a version"
+    },
+
+    "files":
+        [{"includePattern": "build/(.*\.deb)", "uploadPattern": "pool/main/h/homeworks/$1",
+        "matrixParams": {
+            "deb_distribution": "bionic",
+            "deb_component": "main",
+            "deb_architecture": "amd64"}
+        }
+    ]
+
+}
