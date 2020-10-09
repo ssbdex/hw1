@@ -12,7 +12,7 @@ script:
 - cmake --version 
 - mkdir build
 - cd build
-- cmake ..
+- cmake .. -DCMAKE_BUILD_TYPE:STRING=Release
 - cmake --build .
 - cmake --build . --target test
 - cmake --build . --target package
