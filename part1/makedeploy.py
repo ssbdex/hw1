@@ -18,7 +18,7 @@ text = '''{
     },
 
     "files":
-        [{"includePattern": "build/(.*\.deb)", "uploadPattern": "pool/main/h/homeworks/$1",
+        [{"includePattern": "build/_CPack_Packages/Linux/DEB/(.*\.deb)", "uploadPattern": "pool/main/h/helloworld/$1",
             "matrixParams": {
             "deb_distribution": "bionic",
             "deb_component": "main",
