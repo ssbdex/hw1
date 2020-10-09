@@ -2,12 +2,12 @@ dist:
   bionic
 language: cpp
 before_script:
-- echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" | sudo tee -a /etc/apt/sources.list
-- sudo apt-get update -qq 
+#- echo "deb http://archive.ubuntu.com/ubuntu bionic main universe" | sudo tee -a /etc/apt/sources.list
+#- sudo apt-get update -qq 
 - sudo apt-get install libboost-test-dev -y
 
 script:
-- cd hw1
+- cd part1
 - cmake --version
 - cmake .
 - cmake --build .
