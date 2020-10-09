@@ -2,7 +2,7 @@ import os
 
 text = '''{
     "package": {
-        "name": "homeworks",
+        "name": "helloworld",
         "repo": "otus-cpp",
         "subject": "ampermetr123",
         "desc": "I was pushed completely automatically",
