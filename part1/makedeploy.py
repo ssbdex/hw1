@@ -20,11 +20,12 @@ text = '''{
     "files":
         [{"includePattern": "build/_CPack_Packages/Linux/DEB/(.*\.deb)", "uploadPattern": "pool/main/h/helloworld/$1",
             "matrixParams": {
-            "deb_distribution": "bionic",
+            "deb_distribution": "trusty",
             "deb_component": "main",
             "deb_architecture": "amd64"}
         }
-    ]
+    ],
+    "publish": true
 
 }'''
 
