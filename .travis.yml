@@ -9,14 +9,19 @@ before_script:
 
 script:
 - cd part1
-- cmake --version 
 - mkdir build
 - cd build
 - cmake .. -DCMAKE_BUILD_TYPE:STRING=Release
 - cmake --build .
 - cmake --build . --target test
 - cmake --build . --target package
-- cd ..
+- cd ../../part2
+- mkdir build
+- cd build
+- cmake .. -DCMAKE_BUILD_TYPE:STRING=Release
+- cmake --build .
+- cmake --build . --target package
+- cd ../../
 
 before_deploy:
   python makedeploy.py
