@@ -5,8 +5,10 @@
 #include <vector>
 #include <array>
 #include <exception>
-#include <utility>
 #include <algorithm>
+#include <cstdlib> 
+#include <cstdint>
+#include "trim.h"
 
 // ("",  '.') -> [""]
 // ("11", '.') -> ["11"]
@@ -31,23 +33,21 @@ std::vector<std::string> split(const std::string &str, char d)
 
 struct my_ip {
     std::string strval; 
-    std::vector<int> intval;
+    std::array<uint8_t,4> intval;
+    
     my_ip(std::string v): strval(v) {
         auto items = split(strval, '.');
         if (items.size()!=4){ 
-            throw std::invalid_argument("invalid ip adress string");
+            throw std::invalid_argument("");
         }
-        for_each(items.begin(), items.end(), 
-            [this](const std::string &str)
-            {
-                auto num=std::stoi(str);
-                if (num>=0 && num<=255){
-                    intval.push_back(num);
-                } else {
-                    throw std::invalid_argument("invalid ip adress string");
+        for(int i=0; i<4; i++){
+            auto num=std::stoi(items[i]);
+            if (num>=0 && num<=255){
+                intval[i]=num;
+            } else {
+                throw std::invalid_argument("");
             }
         }
-        );
     }
 };
 
@@ -57,10 +57,19 @@ int main(int , char const **)
     try
     {
         // fill pull and check
+        long line_number=1; 
         std::vector<my_ip> ip_pool;
-        for(std::string line; std::getline(std::cin, line);) {
-            std::vector<std::string> v = split(line, '\t');
-            ip_pool.push_back(my_ip(v.at(0)));
+        for(std::string line; std::getline(std::cin, line); line_number++) {
+            try{
+                trim(line);
+                if (line.size() == 0){
+                    continue; // ignore empty adress or strings
+                }
+                std::vector<std::string> v = split(line, '\t');
+                ip_pool.push_back(my_ip(v.at(0)));
+            } catch (const std::invalid_argument &ex){
+                std::cerr << "Skipped invalid IP-address on line " << line_number << std::endl;
+            }    
         }
 
         // reverse lexicographically sort
@@ -108,7 +117,8 @@ int main(int , char const **)
     }
     catch(const std::exception &e) {
         std::cerr << e.what() << std::endl;
+        return EXIT_FAILURE;
     }
 
-    return 0;
+    return EXIT_SUCCESS;
 }
